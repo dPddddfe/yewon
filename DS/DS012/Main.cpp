@@ -12,23 +12,22 @@ int main(){
 
     st_score s1,s2;
 
-
-    cin >> s1.title;
+    getline(cin, s1.title);
     cin >> s1.money;
-    cin >> s1.made;
+    cin.ignore();
+    getline(cin, s1.made);
 
-    cin >> s2.title;
+    getline(cin, s2.title);
     cin >> s2.money;
-    cin >> s2.made;
+    cin.ignore();
+    getline(cin, s2.made);
+
 
     //변수 설정
-    if(strcmp(s1.title,s2.title)==0){
-        
+    if(s1.title == s2.title && s1.money == s2.money && s1.made == s2.made ){
+        printf("%s is equal\n",s1.title.c_str());
     }
-    
-    
-
-    printf("%d %d\n",total, max_num);
+    else printf("%s and %s is not equal\n", s1.title.c_str(), s2.title.c_str());
 
     return 0;
 }
