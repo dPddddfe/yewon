@@ -12,15 +12,10 @@ int main(){
 
     st_score s1,s2;
 
-    getline(cin, s1.title);
-    cin >> s1.money;
-    cin.ignore();
-    getline(cin, s1.made);
+    cin >> s1.title >> s1.money >>s1.made;
 
-    getline(cin, s2.title);
-    cin >> s2.money;
-    cin.ignore();
-    getline(cin, s2.made);
+
+    cin >> s2.title >> s2.money>>s2.made;
 
 
     //변수 설정
