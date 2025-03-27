@@ -15,7 +15,6 @@ struct Menu{
 void addCafe(Cafe &r1);
 void addMenu(Menu &m1);
 void displayManu(Cafe &r1);
-void scan(Cafe &r1);
 
 
 int main(){
@@ -24,7 +23,7 @@ int main(){
     Menu* m1 = new Menu;
 
     addCafe(*r1);
-    scan(*r1);
+    cin >> r1->manunum;
 
     r1->rist = new string[r1->manunum];
     
@@ -34,12 +33,7 @@ int main(){
     }
     
     displayManu(*r1);
-    delete m1;
-    delete r1;
     return 0;
-}
-void scan(Cafe &r1){
-    cin >> r1.manunum;
 }
 
 void addCafe(Cafe &r1){
