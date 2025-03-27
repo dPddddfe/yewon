@@ -21,6 +21,7 @@ int main(){
 
     Cafe* r1 = new Cafe;
     Menu* m1 = new Menu;
+    [r1->]
 
     addCafe(*r1);
     cin >> r1->manunum;
