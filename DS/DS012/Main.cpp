@@ -13,8 +13,6 @@ int main(){
     st_score s1,s2;
 
     cin >> s1.title >> s1.money >>s1.made;
-
-
     cin >> s2.title >> s2.money>>s2.made;
 
 
