@@ -22,38 +22,34 @@ Hello World
 
 using namespace std;
 
-void ltrim(string* s);
-void rtrim(string* s);
+string ltrim(string s);
+void rtrim(string& s);
 
 int main(){
 
-    string* sentence;
-    char* editsentence = {};
+    string sentence;
+    string editsentence;
 
-    scanf("%s",sentence);
+    getline(cin,sentence);
 
     editsentence = ltrim(sentence);
-    cin >> r1->manunum;
+    rtrim(editsentence);
 
-    r1->rist = new string[r1->manunum];
-    
-    for(int i =0; i<r1->manunum; i++){
-        addMenu(*m1);
-        r1->rist[i] = m1->manuname + " " + to_string(m1->money);
-    }
-    
-    displayManu(*r1);
+    cout << editsentence << endl;
     return 0;
 }
 
-void ltrim(string* s){
+string ltrim(string s){
     //문자열 앞의 공백을 제거
-    int count = -1;
-    size_t start = s->find_first_not_of(" \t\n\r");
-    string sen = substr(0,start);
+    size_t start = s.find_first_not_of("\t");
+    string sen = s.substr(0,start);
 
+    return s.substr(start);
 }
 
-void rtrim(string* s){
+void rtrim(string& s){
     //문자열 뒤의 공백을 제거
+    int count = s.length();
+    size_t start = s.find_last_not_of(" \t");
+    string sen = s.substr(start,count);
 }
