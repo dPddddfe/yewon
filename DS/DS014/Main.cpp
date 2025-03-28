@@ -22,8 +22,8 @@ Hello World
 
 using namespace std;
 
-void ltrim(string* s);
-void rtrim(string* s);
+void ltrim(string* s); 
+void rtrim(string* s); 
 
 int main(){
 
