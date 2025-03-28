@@ -1,28 +1,37 @@
+/*
+공백과 탭키가 포함된 문자열을 입력했을 떄
+전체 문자열 앞이나 전체 문자열 뒤에 있는 공백이나 탭키를 제거하고
+문자열만 출력하라
+문자열 앞의 공백을 제거하는 ltrim(),
+문자열 뒤의 공백을 제거하는 rtrim() 함수를 직접 제작하여 완성하라
+
+단, STL은 사용하지 말 것.
+함수 2개 이상 제작하여 사용할 것
+
+<string> header file을 포함하고
+find_last_not_of() 함수와
+find_last_not_off() 함수를 활용하라
+
+Hello World
+
+*/
+
+
 #include <iostream>
+#include <string>
+
 using namespace std;
 
-struct Cafe{
-    string cafename;
-    int manunum;
-    string* rist;
-};
-
-struct Menu{
-    string manuname;
-    int money;
-};
-
-void addCafe(Cafe &r1);
-void addMenu(Menu &m1);
-void displayManu(Cafe &r1);
-
+void ltrim(string* s);
+void rtrim(string* s);
 
 int main(){
 
-    Cafe* r1 = new Cafe;
-    Menu* m1 = new Menu;
+    string* sentence;
 
-    addCafe(*r1);
+    scanf("%s",sentence);
+
+    sentence = ltrim(s);
     cin >> r1->manunum;
 
     r1->rist = new string[r1->manunum];
@@ -36,17 +45,10 @@ int main(){
     return 0;
 }
 
-void addCafe(Cafe &r1){
-    getline(cin,r1.cafename);
+void ltrim(string* s){
+    //문자열 앞의 공백을 제거
 }
-void addMenu(Menu &m1){
-    cin >> m1.manuname >> m1.money;
 
-}
-void displayManu(Cafe &r1){
-    printf("===== %s =====\n",r1.cafename.c_str());
-    for(int i=0; i<r1.manunum; i++){
-        printf("%s\n",r1.rist[i].c_str());
-    }
-    printf("=================\n");
+void rtrim(string* s){
+    //문자열 뒤의 공백을 제거
 }
