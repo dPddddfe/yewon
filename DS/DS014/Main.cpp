@@ -18,7 +18,7 @@ Hello World
 
 
 #include <iostream>
-#include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -28,10 +28,11 @@ void rtrim(string* s);
 int main(){
 
     string* sentence;
+    char* editsentence = {};
 
     scanf("%s",sentence);
 
-    sentence = ltrim(s);
+    editsentence = ltrim(sentence);
     cin >> r1->manunum;
 
     r1->rist = new string[r1->manunum];
@@ -47,6 +48,10 @@ int main(){
 
 void ltrim(string* s){
     //문자열 앞의 공백을 제거
+    int count = -1;
+    size_t start = s->find_first_not_of(" \t\n\r");
+    string sen = substr(0,start);
+
 }
 
 void rtrim(string* s){
