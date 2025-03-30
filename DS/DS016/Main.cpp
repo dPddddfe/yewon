@@ -9,11 +9,13 @@ int main() {
 
 
     string str1, str2, str3;
+    
     cin >> str1 >> str2 >> str3;
 
     char* sen1 = new char[str1.length() + 1];
     char* sen2 = new char[str2.length() + 1];
     char* sen3 = new char[str3.length() + 1];
+
 
 
 
