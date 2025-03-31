@@ -14,14 +14,28 @@ class Main {
         //변수 설정
         double m2_area;
         double pyung_area;
+        int count1=0;
+        int count2=0;
+        int count3=0;
+        int count4=0;
 
-        m2_area = s.nextDouble();
-        pyung_area = m2_area / 3.305;
+        for(int i=0;i<10;i++){
 
-        if(pyung_area >= 50) System.out.printf("%.1f\nhuge\n",pyung_area);
-        else if(pyung_area >= 30) System.out.printf("%.1f\nlarge\n",pyung_area);
-        else if(pyung_area >= 15) System.out.printf("%.1f\nnormal\n",pyung_area);
-        else if(pyung_area < 15) System.out.printf("%.1f\nsmall\n",pyung_area);
+            m2_area = s.nextDouble();
+            pyung_area = m2_area / 3.305;
+
+            if(pyung_area >= 50) count4++;
+            else if(pyung_area >= 30) count3++;
+            else if(pyung_area >= 15) count2++;
+            else if(pyung_area < 15) count1++;
+        }
+
+
+        System.out.printf("small - %d\n",count1);
+        System.out.printf("normal - %d\n",count2);
+        System.out.printf("large - %d\n",count3);
+        System.out.printf("huge - %d\n",count4);
+
 
 
         s.close();
