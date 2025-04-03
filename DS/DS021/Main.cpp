@@ -9,34 +9,49 @@ class Student{
         string sid;
         int *score;
         void print() const;
+        Student(); 
+        void inputScores();  // 점수 입력
+        int getSum() const;  // 총합 구하기
 
 };
-double Student::getAvg() const{
-    int kor,eng,math;
+
+Student::Student() {
+    score = new int[3];  
+}
+void Student::inputScores(){
+    cin >> score[0];
+    cin >> score[1];
+    cin >> score[2];
+}
+int Student::getSum() const{
     int total;
+    total = score[0] + score[1] + score[2];
+
+    return total;
+}
+
+double Student::getAvg() const{
+
     double aver;
-
-    cin >> kor;
-    cin >> eng;
-    cin >> math;
-
-    total = kor + eng + math;
-    aver = (double) total / 3.0;
+    aver = (double) getSum() / 3.0;
             
     return aver;
 }
 
+void Student::print() const {
+    printf("[%s] %s\nThe Average score is %.1f\n",sid.c_str(),name.c_str(),getAvg());
+}
+
 int main(){
     Student s;
-    double aver;
-    int kor,eng,math;
-    
+
     cin >> s.sid;
-    aver = s.getAvg();
+    cin.ignore();
+    s.inputScores();
+    cin.ignore();
     getline(cin,s.name);
 
-    printf("[%s] %s\nThe Average score is %.1f%",s.sid.c_str(),s.name.c_str(),aver);
-
+    s.print();
     return 0;
 }
 
