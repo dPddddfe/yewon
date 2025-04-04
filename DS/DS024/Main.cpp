@@ -16,7 +16,6 @@ public:
     MyClass(int ncode, string nname, int nunit, int ngrading){
         code = ncode; name = nname; unit = nunit; grading = ngrading;
     }
-    ~MyClass();
     int getCode(){return code;}
     string getName(){return name;}
     int getUnit(){return unit;}
@@ -47,7 +46,6 @@ public:
     MyClassManager(){
         count=0; mycount=0;
     }
-    ~MyClassManager(){}
     int getCount(){return count;}
     int getMyCount(){return mycount;}
 
@@ -138,6 +136,9 @@ void MyClassManager::loadData(string filename){
 }
 
 void MyClassManager::printAllClasses(){
+
+    
+    
 	for (int i=0; i<count; i++){
 		cout << allclasses[i]->toString() << endl;
 	}
@@ -178,6 +179,8 @@ void MyClassManager::addClass(){
         cin >> code;
         for(int i=0; i<count; i++){
             if(allclasses[i]->getCode() == code){
+                cout << "Code duplicated! Retry." <<endl;
+
                 out = true;
                 break;
             }
@@ -200,36 +203,38 @@ void MyClassManager::addClass(){
 
 void MyClassManager::editClass(){
 	int code;
-	cout << ">> Enter a code of class > ";
-	cin >> code;
 
-	
-	// You must complete this section.
-    int newcode = 1;
-    int j;
-    for(int i=0; i<count; i++){
-        if(allclasses[i]->getCode() == code){
-            newcode = 0;
-            j=i;
-            break;
+
+    while (true) {
+        cout << ">> Enter a code of class > ";
+        cin >> code;
+        int newcode = 1;
+        int j;
+        for(int i=0; i<count; i++){
+            if(allclasses[i]->getCode() == code){
+                newcode = 0; //중복되면
+                j=i;
+                break;
+            }
         }
-    }
-    if(newcode == 0){
-        string name;
-        int unit, grading;
+        if(newcode == 0){
+            string name;
+            int unit, grading;
+            cout << "Current: "<<allclasses[j]->toString() << endl;
 
-        cout << ">> class name > ";
-        cin >> name;
-        cout << ">> credits > ";
-        cin >> unit;
-        cout << ">> grading (1: A+~F, 2: P/F) > ";
-        cin >> grading;
-        delete allclasses[j];
-        allclasses[j] = new MyClass(code, name, unit, grading);
-    } else{
-        cout << "error" << endl;
-        
-        
+            cout << ">> Enter new class name > ";
+            cin >> name;
+            cout << ">> Enter new credits > ";
+            cin >> unit;
+            cout << ">> Enter new grading (1: A+~F, 2: P/F) > ";
+            cin >> grading;
+            delete allclasses[j];
+            allclasses[j] = new MyClass(code, name, unit, grading);
+            cout <<"> Modified."<<endl<<endl;
+            return;
+        }else{
+            cout << "No such class." << endl;
+        }
     }
 
 }
@@ -239,54 +244,88 @@ void MyClassManager::editClass(){
 void MyClassManager::applyMyClass(){
 
 // You must make all these functions.
-	int code;
-	cout << ">> Enter a code of class > ";
-	cin >> code;
-
-	
+	int code =0;
+    int rucount=0;
 	// You must complete this section.
-    int newcode = 1;
-    int j;
-    for(int i=0; i<count; i++){
-        if(myclasses[i]->getCode() == code){
-            newcode = 0;
-            j=i;
-            break;
+
+    while (true) {
+        cout << ">> Enter a code of class > ";
+        cin >> code;
+        int newcode = 1;
+        int j;
+        for(int i=0; i<count; i++){
+            if(allclasses[i]->getCode() == code){
+                newcode = 0; //중복되면
+                j=i;
+                break;
+            }
+        }
+        if(newcode == 0){
+            cout << allclasses[j]->toString() << endl;
+            cout << "Add more?(1:Yes 2:No) > ";
+            int num;
+            cin >> num;
+            switch (num) {
+                case 1:
+                    myclasses[mycount] = allclasses[j];
+                    mycount++;
+                    rucount++;
+                    break;
+
+                case 2:
+                    myclasses[mycount] = allclasses[j];
+                    mycount++;
+                    rucount++;
+                    return;
+                default:
+                    break;
+
+            }
+
+        }else{
+            cout << "No such code of class." << endl;
         }
     }
-    if(newcode == 0){
-        string name;
-        int unit, grading;
+    cout << rucount <<" classes has been applied"<<endl<<endl;
 
-        cout << ">> class name > ";
-        cin >> name;
-        cout << ">> credits > ";
-        cin >> unit;
-        cout << ">> grading (1: A+~F, 2: P/F) > ";
-        cin >> grading;
-        delete myclasses[j];
-        myclasses[j] = new MyClass(code, name, unit, grading);
-    } else{
-        cout << "error" << endl;
-        
-        
-    }
+
 
 	
 }
 
 void MyClassManager::printMyClasses(){
 
-// You must make all these functions.
+    int totalcredits=0;
 
-	
+// You must make all these functions.
+	for (int i=0; i<mycount; i++){
+		cout << i+1<<". "<<myclasses[i]->toString() << endl;
+        totalcredits += myclasses[i]->getUnit();
+	}
+    cout << "All : " <<totalcredits << " credits" <<endl << endl;
+
 
 }
 
 void MyClassManager::saveMyClasses(string filename){
 
 // You must make all these functions.
+    int totalcredits=0;    int AF=0,PF=0;
 
+    ofstream file(filename);
+	
+        for (int i=0; i<mycount; i++){
+            file << i+1 <<". "<<myclasses[i]->toString() << endl;
+            
+            if(myclasses[i]->getGrading() == 1) AF += myclasses[i]->getUnit();
+            else PF += myclasses[i]->getUnit();
+        }
+    file << "All : " <<totalcredits << ", credits";
+    file << " (A+~F " << AF << " credits,"<< " P/F " << PF << " credits)";
+
+        
+
+	file.close();
 
 	
 }
