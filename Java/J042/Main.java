@@ -16,18 +16,21 @@ public class Main {
 
         
         lotto.printNumbers();
+        lotto.remake();
 
         s.close();
     }
 }
 class Lotto{
-    int[] number = new int[6];;
+    int[] rannumber = new int[6];
+    int[] usernumber = new int[6];
+    Scanner s = new Scanner(System.in);
 
     public Lotto(){
         Random ran = new Random();
 
         for(int i=0; i<6; i++){
-            number[i]= ran.nextInt(45)+1;
+            rannumber[i]= ran.nextInt(45)+1;
             remakeAuto(i);
         }
 
@@ -37,18 +40,42 @@ class Lotto{
         System.out.printf("Lotto Number : ");
 
         for(int i =0; i<6; i++){
-            System.out.printf("%d ", number[i]);
+            System.out.printf("%d ", rannumber[i]);
     
         }
         System.out.printf("\n");
     }
     public void remakeAuto(int n){
-        for(int j =0; j<n;j++){
-            Random ran = new Random();
-            if(number[j]==number[n]){
-                number[n]= ran.nextInt();
+
+        Random ran = new Random();
+        boolean TF;
+
+        do {
+            TF = false;
+            for (int j = 0; j < n; j++) {
+                if (rannumber[j] == rannumber[n]) {
+                    rannumber[n] = ran.nextInt(45) + 1;
+                    TF = true;
+                    break;
+                }
             }
+        } while (TF);
+    }
+    public void remake(){
+
+        System.out.printf("Input Your Number : ");
+
+        for(int i=0; i<6; i++){
+            usernumber[i] = s.nextInt();
         }
+
+        System.out.printf("Your Number : ");
+
+        for(int i=0; i<6; i++){
+            System.out.printf("%d ", usernumber[i]);
+        }
+        System.out.printf("\n");
+
     }
 
 
