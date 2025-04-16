@@ -39,20 +39,25 @@ int main() {
     MyStackInt myStack(count);
 
     string str;
-    int score;
+    int score[100];
+    int scorecount=0;
 
     while (!myStack.isFull())
     {
             string name = "";
-            cin >> str >> score >> name;
+            cin >> str;
             if(str == "q"){
-                return 0;
+                break;
             }
             else if(str == "+"){
+                cin >> score[scorecount];
+                getline(cin,name);
                 myStack.push(name);
+                scorecount++;
             }
             else if(str == "-"){
-                cout << score << "등 - ";
+                scorecount--;
+                cout << score[scorecount] << "등 - ";
                 myStack.rprint();
                 myStack.pop();
             }

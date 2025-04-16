@@ -31,6 +31,7 @@ string MyStackInt::pop() {
         x = S[top]; // take out the element 
         top--; // and decreament the size of the Stack 
     }
+    return x;
 }
 
 bool MyStackInt::isFull() const { 
