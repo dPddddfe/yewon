@@ -19,12 +19,19 @@ public class Main {
         lotto.printNumbers();
         lotto.remake();
 
+
+        System.out.printf("This week Lotto Number : ");
+        for(int i=0; i<6; i++){
+            lotto.weeknumber[i]= s.nextInt();
+        }
+
+
         win = lotto.checkLotto(lotto.rannumber);
-        System.out.printf("Random Number is %d correct.\n", win);
+        System.out.printf("Random Number is %d correct.", win);
 
         win = 0;
         win = lotto.checkLotto(lotto.usernumber);
-        System.out.printf("Random Number is %d correct.\n", win);
+        System.out.printf("Your Number is %d correct.\n", win);
 
 
         s.close();
@@ -90,20 +97,18 @@ class Lotto{
 
     public int checkLotto(int[] check){
 
-        System.out.printf("This week Lotto Number : ");
+    
         int count =0;
-
+        
         for(int i=0; i<6; i++){
-            
-            if(weeknumber == null){
-                weeknumber[i] = s.nextInt();
-            }
             for(int j=0; j<6; j++){
                 if(weeknumber[i] == check[j]){
                     count ++;
+                    break;
                 }
             }
         }
+        System.out.printf("\n");
         return count;
     }
 
