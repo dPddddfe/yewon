@@ -16,7 +16,7 @@ MyStackIntList::~MyStackIntList() {
     }
 }
 
-void MyStackIntList::push(int x) {
+void MyStackIntList::push(char x) {
     Node* p = new Node;
     if (p == nullptr) {
         cout << "Stack Overflow!" << endl;
@@ -58,18 +58,16 @@ int MyStackIntList::isEmpty() {
 void MyStackIntList::printAll() { 
     Node* p = top;
 
-    if(p == nullptr){
-        cout << "Stack is empty";
-    }
-    else{
+    if(p != nullptr){
+        
         while(p) {
-            cout << p->data;
-            if(p->next != NULL) cout << " -> ";
+            cout << (char)p->data;
             p = p->next;
         }
-        cout << " ( "<< size << " nodes)";
     }
-    cout << endl;
+    else{
+        return;
+    }
 }
 
 int MyStackIntList::stackTop() {
@@ -79,12 +77,14 @@ int MyStackIntList::stackTop() {
         return -1;
 }
 
-int MyStackIntList::getNodeCnt() {
-    return size;
-}
+void MyStackIntList::printAllre() {
+    MyStackIntList temp;
 
-void MyStackIntList::initialize() {
-    while (!isEmpty()) {
-        pop();
+    Node* p = top;
+    while (p) {
+        temp.push(p->data); 
+        p = p->next;
     }
+
+    temp.printAll(); 
 }
