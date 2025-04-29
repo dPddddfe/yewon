@@ -2,27 +2,27 @@
 #include <string>
 using namespace std;
 
-#define SIZE 100
-#define EOS '#'  // Expression End Symbol
+#define SIZE 100 //사이즈 정의
+#define EOS '#'  // Expression End Symbol, 끝 확인 문자
 
 // 연산자 스택 클래스 정의
 class op_stack {
-    char s[SIZE];
-    int top;
+    char s[SIZE]; //배열 생성
+    int top; //top노드
 public:
-    op_stack() { top = 0; }
+    op_stack() { top = 0; } //생성자
 
-    void push(char x) { s[top++] = x; }
+    void push(char x) { s[top++] = x; } //stack에 넣기
 
-    char pop() { return s[--top]; }
+    char pop() { return s[--top]; }  //stack에서 꺼내기
 
-    bool empty() { return top == 0; }
+    bool empty() { return top == 0; } //null인지 확인
 
-    char top_element() { return s[top - 1]; }
+    char top_element() { return s[top - 1]; } //다음 top이 무엇인지 확인
 };
 
 // 피연산자 판별 함수
-bool is_operand(char ch) {
+bool is_operand(char ch) { 
     if (ch == '(' || ch == ')' || ch == '+' || ch == '-' ||
         ch == '*' || ch == '/' || ch == '%')
         return false;
@@ -53,22 +53,23 @@ int main() {
         if (is_operand(input[i])) {
             output += input[i];  // 피연산자 그대로 출력
         }
-        else if (input[i] == ')') {
-            while (stack1.top_element() != '(') {
-                output += stack1.pop();
+        else if (input[i] == ')') { //input이 )이라면
+            while (stack1.top_element() != '(') { //(이 아닐 때까지 반복
+                output += stack1.pop(); //stack에서 꺼내어 아웃풋에 넣기
             }
             stack1.pop();  // 여는 괄호 제거
         }
-        else {
-            while (get_precedence(stack1.top_element()) >= get_precedence(input[i])) {
-                output += stack1.pop();
+        else {//operater라면
+            while (get_precedence(stack1.top_element()) >= get_precedence(input[i])) { //자신보다 높은 연산자를 pop한다
+                output += stack1.pop(); //pop하여 output에 추가
             }
-            stack1.push(input[i]);
+            stack1.push(input[i]); //본인 넣기
         }
     }
 
-    // 남은 연산자 모두 출력
-    while (stack1.top_element() != EOS) {
+    //input 계산 끝
+    //남은 연산자 모두 출력
+    while (stack1.top_element() != EOS) {//EOS가 나올 때 까지 pop
         output += stack1.pop();
     }
 
