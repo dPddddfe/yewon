@@ -1,19 +1,22 @@
-package J052;
+package J053;
 
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args){
         Main pStdio = new Main();
-        pStdio.J052();
+        pStdio.J053();
     }
-    void J052(){
+    void J053(){
 
         Scanner s = new Scanner(System.in);
         Score score = new Score(5);
 
+        int num = s.nextInt();
+
         score.getScore();
-        score.printScore();
+        score.printScore(num);
 
     }
 }
@@ -65,6 +68,24 @@ class Score{
 
         }
     }
+    public void printScore(int num){
+        if(num < 0 || num >= Scount){
+            System.out.println("Invalid student number.");
+            return;
+        }
+    
+        System.out.printf("Student(%d)'s Score : ", num);
+        int couNum = num -1;
+        for(int j = 0; j < 3; j++){
+            System.out.printf("%d ", jumsu[couNum][j]);
+        }
+    
+        System.out.printf("Sum : %.1f\n", sum_student[couNum]);
+        System.out.printf("Average : %.1f\n", average_student[couNum]);
+        System.out.printf("Grade : %s\n", grade[couNum]);
+        System.out.printf("\n");
+    }
+    
 
  
 
