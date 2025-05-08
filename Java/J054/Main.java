@@ -1,4 +1,4 @@
-package J053;
+package J054;
 
 import java.util.Scanner;
 
@@ -6,9 +6,9 @@ public class Main {
 
     public static void main(String[] args){
         Main pStdio = new Main();
-        pStdio.J053();
+        pStdio.J054();
     }
-    void J053(){
+    void J054(){
 
         Scanner s = new Scanner(System.in);
         Score score = new Score(5);
@@ -17,7 +17,13 @@ public class Main {
 
         score.getScore();
         score.printScore(num);
+        int[] total = score.sum_class();
+        double[] avg = score.sum_average();
 
+        System.out.println("Subject Totals: kor = " + total[0] + ", eng = " + total[1] + ", math=" + total[2]);
+        System.out.printf("Subject Averages: kor = %.1f, eng = %.1f, math = %.1f\n",avg[0], avg[1], avg[2]);
+
+    }
 }
 class Score{
 
@@ -84,7 +90,28 @@ class Score{
         System.out.printf("Grade : %s\n", grade[couNum]);
         System.out.printf("\n");
     }
+    public int[] sum_class() {
+        int[] Sum = new int[3]; 
+        for (int i = 0; i < Scount; i++) {
+            for (int j = 0; j < 3; j++) {
+                Sum[j] += jumsu[i][j];
+            }
+        }
+        return Sum;
+    }
 
+    // 과목별 평균 반환
+    public double[] sum_average() {
+        int[] Sum = sum_class();
+        double[] Average = new double[3];
+        for (int j = 0; j < 3; j++) {
+            Average[j] = (double) Sum[j] / Scount;
+        }
+        return Average;
+    }
+
+
+    
 
  
 
