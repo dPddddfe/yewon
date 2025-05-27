@@ -1,29 +1,42 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+
 public class Main {
-    public static void main (String [] args){
-        String fileName = "data.txt";
+    public static void main(String[] args) {
+        String fileName = "data.txt"; // 입력 파일 이름
         Scanner inputStream = null;
-        System.out.println ("The file " + fileName +"\ncontains the following lines:\n");
-        try{
-            inputStream = new Scanner (new File (fileName));
-        }catch (FileNotFoundException e){
-            System.out.println ("Error opening the file " +fileName);System.exit (0);
+
+        try {
+            inputStream = new Scanner(new File(fileName));
+        } catch (FileNotFoundException e) {
+            System.out.println("Error opening the file " + fileName);
+            System.exit(0);
         }
-        int max_num = 0;
-        int min_num = 100000;
-        while (inputStream.hasNextInt ()){
-            int num = inputStream.nextInt();
-            if(num > max_num){
-                max_num = num;
-            }
-            if(num < min_num){
-                min_num = num;
+
+        int count = 0;
+        int bmicount = 0;
+
+        while (inputStream.hasNextInt()) {
+            int cm = inputStream.nextInt();  // cm 단위
+            int kg = inputStream.nextInt();  // kg 단위
+
+            double m = cm / 100.0; // m 단위 변환
+            double bmi = kg / (m * m);
+
+            count++;
+            if (bmi >= 25.0) {
+                bmicount++;
             }
         }
-        System.out.printf ("Maximum number: %d\n", max_num);
-        System.out.printf ("Minimum number: %d\n", min_num);
-        inputStream.close ();
+
+        inputStream.close();
+
+        // 비율 계산
+        int per = (int) Math.round((100.0 * bmicount) / count);
+
+        // 출력
+        System.out.println("All " + count + " persons.");
+        System.out.println("Total overweight persons: " + bmicount + " (" + per + "%)");
     }
 }
