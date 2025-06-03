@@ -22,5 +22,5 @@ public:
     void printAll();     // function for displaying the stack 
     int stackTop();     // top function for checking the topmost element present in the stack 
     void printAllre();
-};
+}
 
